@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { HomeScreen } from "./screens/HomeScreen";
 import { CreateBudgetScreen } from "./screens/CreateBudgetScreen";
 import { ROUTES } from "./utils/ROUTES/routes";
+import { BudgetScreen } from "./screens/BudgetScreen";
 
 export default function Main() {
   return (
@@ -12,6 +13,7 @@ export default function Main() {
         <StatusBar style="auto" />
         <Routes>
           <Route path={ROUTES.HOME} element={<HomeScreen />} />
+          <Route path={ROUTES.BUDGET_SCREEN} element={<BudgetScreen />} />
           <Route path={ROUTES.CREATE_BUDGET} element={<CreateBudgetScreen />} />
         </Routes>
       </View>

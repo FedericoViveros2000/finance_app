@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-const BudgetCard = () => {
+const CreateBudgetCard = () => {
   return (
     <View style={styles.container}>
       <Text style={[styles.textColor, styles.textMd]}>Presupuesto</Text>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BudgetCard;
+export default CreateBudgetCard;

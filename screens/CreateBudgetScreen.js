@@ -6,22 +6,58 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import uuid from "react-native-uuid";
 import { Slider } from "@react-native-assets/slider";
+import { useNavigate } from "react-router-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ROUTES } from "../utils/ROUTES/routes";
+import { STORAGE } from "../utils/ROUTES/CONSTANS/STORAGE";
+import { setStorage } from "../utils/STORAGE/setStorage";
+import { getStorageData } from "../utils/STORAGE/getStorage";
 
 const CreateBudgetScreen = () => {
   const [amount, setAmount] = useState("");
+  const navigate = useNavigate();
   const [amountPercentage, setAmountPercenge] = useState({
     percentage: 0,
     amount: 0,
   });
 
   const saveBudget = async () => {
-    try {
-      await AsyncStorage.setItem("Test", amount.toString());
-    } catch (err) {
-      console.log(err);
-    }
+    console.log({
+      id: uuid.v4(),
+      amount,
+      date: new Date(),
+      alert: amountPercentage.percentage,
+    });
+    getStorageData({
+      name: STORAGE.BUDGET,
+    }).then((res) => {
+      let storedValue =
+        res !== null
+          ? [
+              ...res,
+              {
+                id: uuid.v4(),
+                amount,
+                date: new Date(),
+                alert: amountPercentage.percentage,
+              },
+            ]
+          : [
+              {
+                id: uuid.v4(),
+                amount,
+                date: new Date(),
+                alert: amountPercentage.percentage,
+              },
+            ];
+      setStorage({
+        name: STORAGE.BUDGET,
+        values: storedValue,
+      }).then((res) => navigate(ROUTES.BUDGET_SCREEN));
+      return;
+    });
   };
 
   return (
@@ -50,6 +86,7 @@ const CreateBudgetScreen = () => {
               })
             }
           />
+          <Text>Porcentaje: {amountPercentage.percentage}</Text>
           <Text>Monto: {amountPercentage.amount}</Text>
         </View>
         <Text>Fecha de inicio</Text>

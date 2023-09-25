@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-native";
 import { TouchableOpacity, View } from "react-native";
-import BudgetCard from "../components/cards/budget/BudgetCard";
+import CreateBudgetCard from "../components/cards/budget/CreateBudgetCard";
 import { ROUTES } from "../utils/ROUTES/routes.js";
 
 const SeparatorComponent = () => {
@@ -20,9 +20,9 @@ export function HomeScreen() {
       <SeparatorComponent />
       <TouchableOpacity
         activeOpacity={0.8}
-        onPressOut={() => navigate(ROUTES.CREATE_BUDGET)}
+        onPressOut={() => navigate(ROUTES.BUDGET_SCREEN)}
       >
-        <BudgetCard />
+        <CreateBudgetCard />
       </TouchableOpacity>
     </View>
   );
