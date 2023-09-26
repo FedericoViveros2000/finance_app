@@ -9,7 +9,7 @@ import {
 import uuid from "react-native-uuid";
 import { Slider } from "@react-native-assets/slider";
 import { useNavigate } from "react-router-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavBar } from "../components/navbar/NavBar";
 import { ROUTES } from "../utils/ROUTES/routes";
 import { STORAGE } from "../utils/ROUTES/CONSTANS/STORAGE";
 import { setStorage } from "../utils/STORAGE/setStorage";
@@ -24,12 +24,6 @@ const CreateBudgetScreen = () => {
   });
 
   const saveBudget = async () => {
-    console.log({
-      id: uuid.v4(),
-      amount,
-      date: new Date(),
-      alert: amountPercentage.percentage,
-    });
     getStorageData({
       name: STORAGE.BUDGET,
     }).then((res) => {
@@ -62,6 +56,7 @@ const CreateBudgetScreen = () => {
 
   return (
     <View>
+      <NavBar to={ROUTES.BUDGET_SCREEN} title="Volver" />
       <Text>Presupuestos</Text>
       <View>
         <View>

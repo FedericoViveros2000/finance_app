@@ -5,6 +5,8 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { CreateBudgetScreen } from "./screens/CreateBudgetScreen";
 import { ROUTES } from "./utils/ROUTES/routes";
 import { BudgetScreen } from "./screens/BudgetScreen";
+import { BudgetScreenDetails } from "./screens/BudgetScreenDetails";
+import { MovementsScreen } from "./screens/MovementsScreen";
 
 export default function Main() {
   return (
@@ -15,6 +17,11 @@ export default function Main() {
           <Route path={ROUTES.HOME} element={<HomeScreen />} />
           <Route path={ROUTES.BUDGET_SCREEN} element={<BudgetScreen />} />
           <Route path={ROUTES.CREATE_BUDGET} element={<CreateBudgetScreen />} />
+          <Route
+            path={ROUTES.BUDGET_DETAILS}
+            element={<BudgetScreenDetails />}
+          />
+          <Route path={ROUTES.MOVEMENTS} element={<MovementsScreen />} />
         </Routes>
       </View>
     </NativeRouter>

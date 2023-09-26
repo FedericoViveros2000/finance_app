@@ -10,7 +10,7 @@ export const ButtonCreateBudget = ({ to = ROUTES.CREATE_BUDGET }) => {
       activeOpacity={0.8}
       onPressOut={() => navigate(to)}
     >
-      <Text styles={styles.textStyles}>Create Budget</Text>
+      <Text style={styles.textStyles}>Crear Presupuesto</Text>
     </TouchableOpacity>
   );
 };
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#506266",
     padding: 10,
+    borderRadius: 10,
   },
   textStyles: {
     textAlign: "center",

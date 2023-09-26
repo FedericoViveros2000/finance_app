@@ -6,6 +6,7 @@ import { ROUTES } from "../utils/ROUTES/routes";
 import { BudgetItem } from "../components/cards/budget/BudgetItem";
 import { STORAGE } from "../utils/ROUTES/CONSTANS/STORAGE";
 import { getStorageData } from "../utils/STORAGE/getStorage";
+import { NavBar } from "../components/navbar/NavBar";
 
 export const BudgetScreen = () => {
   const [amount, setAmount] = useState([{}]);
@@ -15,12 +16,15 @@ export const BudgetScreen = () => {
       name: STORAGE.BUDGET,
     })
       .then((res) => {
+        console.log(res);
         setAmount(res);
       })
-      .catch((err) => console.err(err));
+      .catch((err) => console.error(err));
   }, []);
   return (
     <View>
+      <NavBar to={ROUTES.HOME} title="Volver" />
+
       <ButtonCreateBudget to={ROUTES.CREATE_BUDGET} />
       <FlatList
         data={amount}
