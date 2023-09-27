@@ -7,6 +7,7 @@ import { ROUTES } from "./utils/ROUTES/routes";
 import { BudgetScreen } from "./screens/BudgetScreen";
 import { BudgetScreenDetails } from "./screens/BudgetScreenDetails";
 import { MovementsScreen } from "./screens/MovementsScreen";
+import { MovementCreate } from "./screens/MovementCreate";
 
 export default function Main() {
   return (
@@ -22,6 +23,7 @@ export default function Main() {
             element={<BudgetScreenDetails />}
           />
           <Route path={ROUTES.MOVEMENTS} element={<MovementsScreen />} />
+          <Route path={ROUTES.MOVEMENTS_CREATE} element={<MovementCreate />} />
         </Routes>
       </View>
     </NativeRouter>
