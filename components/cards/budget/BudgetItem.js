@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { ROUTES } from "../../../utils/ROUTES/routes";
 import { setStorage } from "../../../utils/STORAGE/setStorage";
 import { STORAGE } from "../../../utils/ROUTES/CONSTANS/STORAGE";
+import { formatMoney } from "../../../utils/formatMoney";
 
 const SeparatorSection = () => <View style={{ marginTop: 10 }} />;
 
@@ -28,15 +29,18 @@ export const BudgetItem = ({ data }) => {
   return (
     <View>
       <SeparatorSection />
-      <TouchableOpacity activeOpacity={0.8} onPressOut={budgetDetail}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPressOut={budgetDetail}
+        onLongPress={() => setDeleteBudget(true)}
+      >
         <View style={styles.container}>
           <View style={styles.containerFlex}>
-            <Text>{data.amount} (PYG)</Text>
-            <Text>Abrir</Text>
+            <Text style={styles.textColor}>{formatMoney(data.amount)}</Text>
           </View>
           <View style={styles.containerFlex}>
-            <Text>Alerta en: {data.alert} %</Text>
-            <Text>{dateView}</Text>
+            <Text style={styles.textColor}>Alerta en: {data.alert} %</Text>
+            <Text style={styles.textColor}>{dateView}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -46,12 +50,16 @@ export const BudgetItem = ({ data }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "red",
+    backgroundColor: "#183D3D",
     padding: 10,
+    gap: 10,
     borderRadius: 10,
   },
   containerFlex: {
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  textColor: {
+    color: "white",
   },
 });

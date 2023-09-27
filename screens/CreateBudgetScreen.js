@@ -14,6 +14,7 @@ import { ROUTES } from "../utils/ROUTES/routes";
 import { STORAGE } from "../utils/ROUTES/CONSTANS/STORAGE";
 import { setStorage } from "../utils/STORAGE/setStorage";
 import { getStorageData } from "../utils/STORAGE/getStorage";
+import { MovementInput } from "../components/forms/MovementInput";
 
 const CreateBudgetScreen = () => {
   const [amount, setAmount] = useState("");
@@ -57,19 +58,26 @@ const CreateBudgetScreen = () => {
   return (
     <View>
       <NavBar to={ROUTES.BUDGET_SCREEN} title="Volver" />
-      <Text>Presupuestos</Text>
+      <Text style={{ fontSize: 16 }}>Presupuestos</Text>
       <View>
         <View>
-          <Text>Que monto?</Text>
+          <MovementInput
+            nameInput="amount"
+            value={amount}
+            title="Que monto?"
+            placeholder="Monto"
+            handleChange={setAmount}
+          />
+          {/* <Text>Que monto?</Text>
           <TextInput
             placeholder="Que monto desea registrar"
             onChangeText={setAmount}
             value={amount}
-          />
+          /> */}
           <Text>{amount}</Text>
         </View>
         <View>
-          <Text>Porcentaje de alerta?</Text>
+          <Text style={{ fontSize: 16 }}>Porcentaje de alerta?</Text>
           <Slider
             value={amountPercentage.percentage}
             minimumValue={0}
@@ -81,10 +89,10 @@ const CreateBudgetScreen = () => {
               })
             }
           />
-          <Text>Porcentaje: {amountPercentage.percentage}</Text>
-          <Text>Monto: {amountPercentage.amount}</Text>
+          <Text style={{ fontSize: 16 }}>
+            Porcentaje: {amountPercentage.percentage}
+          </Text>
         </View>
-        <Text>Fecha de inicio</Text>
         <TouchableOpacity
           style={styles.buttonStyle}
           activeOpacity={0.5}

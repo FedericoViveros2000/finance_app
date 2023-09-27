@@ -12,7 +12,7 @@ export const NavBar = ({ to, title = "Volver" }) => {
       }}
       onPressOut={() => navigate(to)}
     >
-      <Text style={{ color: "#686de0", fontSize: 18 }}>Volver</Text>
+      <Text style={{ color: "#686de0", fontSize: 16 }}>Volver</Text>
     </TouchableOpacity>
   );
 };

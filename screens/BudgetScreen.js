@@ -16,7 +16,6 @@ export const BudgetScreen = () => {
       name: STORAGE.BUDGET,
     })
       .then((res) => {
-        console.log(res);
         setAmount(res);
       })
       .catch((err) => console.error(err));
@@ -28,7 +27,7 @@ export const BudgetScreen = () => {
       <ButtonCreateBudget to={ROUTES.CREATE_BUDGET} />
       <FlatList
         data={amount}
-        renderItem={({ item }) => <BudgetItem data={item} />}
+        renderItem={({ item }) => <BudgetItem data={item} allData={amount} />}
         keyExtractor={(item) => item?.id}
       />
     </View>

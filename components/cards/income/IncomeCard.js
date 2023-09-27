@@ -1,24 +1,35 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-export const IncomeCard = () => {
+import { formatMoney } from "../../../utils/formatMoney";
+export const IncomeCard = ({ income, egress, budget, alert }) => {
+  const calcBudgetAlert = (budget * alert) / 100;
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        egress > calcBudgetAlert ? styles.backgroundAlert : styles.background,
+      ]}
+    >
       <Text style={[styles.textWhite, styles.fontMd]}>Ingresos / Egresos</Text>
       <View style={styles.containerFlex}>
         <Text style={styles.textWhite}>Ingresos</Text>
-        <Text style={styles.textWhite}>3.000.000</Text>
+        <Text style={styles.textWhite}>{formatMoney(income)}</Text>
       </View>
       <View style={styles.containerFlex}>
         <Text style={styles.textWhite}>Egresos</Text>
-        <Text style={styles.textWhite}>3.000.000</Text>
+        <Text style={styles.textWhite}>{formatMoney(egress)}</Text>
       </View>
       <View style={styles.containerFlex}>
-        <Text style={styles.textWhite}>Saldo</Text>
-        <Text style={styles.textWhite}>3.000.000</Text>
+        <Text style={styles.textWhite}>Presupuesto: </Text>
+        <Text style={styles.textWhite}>{formatMoney(budget)}</Text>
       </View>
       <View style={styles.containerFlex}>
-        <Text style={styles.textWhite}>Meta: </Text>
-        <Text style={styles.textWhite}>3.000.000</Text>
+        <Text style={styles.textWhite}>Saldo Restante: </Text>
+        <Text style={styles.textWhite}>{formatMoney(budget - egress)}</Text>
+      </View>
+      <View style={styles.containerFlex}>
+        <Text style={styles.textWhite}>Alerta: </Text>
+        <Text style={styles.textWhite}>{alert} %</Text>
       </View>
     </View>
   );
@@ -26,10 +37,15 @@ export const IncomeCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#2980b9",
     borderRadius: 10,
     padding: 10,
     gap: 10,
+  },
+  backgroundAlert: {
+    backgroundColor: "red",
+  },
+  background: {
+    backgroundColor: "#2980b9",
   },
   containerFlex: {
     flexDirection: "row",
